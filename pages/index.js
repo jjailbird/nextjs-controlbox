@@ -1,11 +1,22 @@
+import * as React from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { AppBar, Typography, Container, Grid, Button, Switch, Divider } from "@mui/material"
+import {
+  AppBar, Typography, Container, Grid, Button, Switch, Divider,
+  Box, Step, Stepper, StepLabel, StepContent, Paper
+} from "@mui/material"
 import CustomButton from '../components/buttons/customButton'
 import CommandButton from '../components/buttons/CommandButton';
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
+const steps = [
+  'Select master blaster campaign settings',
+  'Create an ad group',
+  'Create an ad',
+];
+
+
 
 export default function Home() {
   return (
@@ -34,11 +45,32 @@ export default function Home() {
         >
           CONTROL BOX
         </Typography>
-        <Divider variant="fullWidth"  />
+        <Divider variant="fullWidth" />
         <div className={styles.container}>
           <Grid container spacing={2}>
             <Grid item xs={12} md>
-              <Button variant="linear-pink" onClick={() => { alert('1') }}>Button 1</Button>
+
+              <Button variant="linear-pink" onClick={() => { alert('1') }}>
+
+                <Box sx={{ maxWidth: '400' }}>
+                  <div>
+                    BUTTON 1
+                  </div>
+                  <Divider style={{ background: 'white', margin: '7px 0px' }} />
+                  <Stepper activeStep={-1} orientation="vertical">
+                    <Step key="1">
+                      <StepLabel>Select master blaster campaign settings</StepLabel>
+                    </Step>
+                    <Step key="2">
+                      <StepLabel>Select master blaster campaign settings</StepLabel>
+                    </Step>
+                    <Step key="3">
+                      <StepLabel>Select master blaster campaign settings</StepLabel>
+                    </Step>
+                  </Stepper>
+                </Box>
+
+              </Button>
             </Grid>
             <Grid item xs={12} md>
               <Button variant="linear-blue">Button 2</Button>
