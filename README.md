@@ -10,6 +10,18 @@ npm run dev
 yarn dev
 ```
 
+To generate static page
+
+```bash
+npm run static
+# or
+yarn static
+
+# generate static pages in "out" directory
+# run web server
+node server.sj
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
