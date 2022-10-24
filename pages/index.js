@@ -6,8 +6,6 @@ import {
   AppBar, Typography, Container, Grid, Button, Switch, Divider,
   Box, Step, Stepper, StepLabel, StepContent, Paper
 } from "@mui/material"
-import CustomButton from '../components/buttons/customButton'
-import CommandButton from '../components/buttons/CommandButton';
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
 const steps = [
@@ -15,8 +13,6 @@ const steps = [
   'Create an ad group',
   'Create an ad',
 ];
-
-
 
 export default function Home() {
   return (
