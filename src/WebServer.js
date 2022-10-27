@@ -90,8 +90,6 @@ class WebServer {
     await this.httpTerminator.terminate();
   }
 
-
-
 }
 
 module.exports = WebServer
