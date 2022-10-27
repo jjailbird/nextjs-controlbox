@@ -14,7 +14,7 @@ export default function Home() {
   let socket = null;
   useEffect(() => {
     console.log('useEffect', process.env.serverPort)
-    socket = io(`ws://localhost:${process.env.serverPort}`)
+    socket = io(`ws://${process.env.serverHost}:${process.env.serverPort}`)
     socket.on("hello", (arg) => {
       console.log(arg)
     })

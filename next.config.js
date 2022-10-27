@@ -11,7 +11,9 @@ const nextConfig = {
   swcMinify: true,
   basePath,
   env: {
-    serverPort: process.env.SERVER_PORT || 80
+    serverPort: process.env.SERVER_PORT || 80,
+    serverHost: process.env.SERVER_HOST || 'localhost'
+
   },
   // for static page, if you run ssr remove below config
   images: {
