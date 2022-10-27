@@ -17,8 +17,10 @@ router.get('/about', (ctx, next) => {
 
 server.SetStatic(__dirname + "/out")
 server.SetRouter(router)
+server.SetSocketIo()
 server.Start()
 console.log(`webserver on port http://localhost:${port} started`)
+
 
 process.on('SIGINT', async function() {
   await server.Stop()

@@ -6,7 +6,8 @@ const cors = require('@koa/cors')
 const http = require('http')
 const https = require('https')
 const { createHttpTerminator } = require('http-terminator')
-const io = require('socket.io')
+const { Server } = require('socket.io')
+const { exec } = require("child_process");
 
 class WebServer {
   constructor(config = {}) {
@@ -14,7 +15,7 @@ class WebServer {
     this.port = config.port || '80'
     this.cors = config.cors || { origin: '*' }
     this.app = new koa()
-    this.io = null
+
 
     switch (config.type) {
       case 'https':
@@ -58,6 +59,31 @@ class WebServer {
 
   SetRouter(router) {
     this.app.use(router.routes()).use(router.allowedMethods());
+  }
+
+  SetSocketIo() {
+
+    this.io = new Server()
+    this.io.listen(this.server)
+    this.io.on("connection", (s) => {
+      console.log('socket io connected');
+      s.emit('hello', 'workd');
+      s.on('backend_script', (arg) => {
+        switch (arg) {
+          case '1':
+            var result = exec('sh hello.sh',
+              (error, stdout, stderr) => {
+                console.log(stdout);
+                console.log(stderr);
+                if (error !== null) {
+                  console.log(`exec error: ${error}`);
+                }
+              });
+
+            break;
+        }
+      })
+    })
   }
 
   Start() {
