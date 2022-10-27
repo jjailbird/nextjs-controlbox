@@ -67,21 +67,17 @@ class WebServer {
     this.io.listen(this.server)
     this.io.on("connection", (s) => {
       console.log('socket io connected');
-      s.emit('hello', 'workd');
+      // s.emit('hello', 'workd');
       s.on('backend_script', (arg) => {
-        switch (arg) {
-          case '1':
-            var result = exec('sh hello.sh',
-              (error, stdout, stderr) => {
-                console.log(stdout);
-                console.log(stderr);
-                if (error !== null) {
-                  console.log(`exec error: ${error}`);
-                }
-              });
+        var result = exec(`sh ~/ces/scripts/${arg}`,
+        (error, stdout, stderr) => {
+          console.log(stdout);
+          console.log(stderr);
+          if (error !== null) {
+            console.log(`exec error: ${error}`);
+          }
+        });
 
-            break;
-        }
       })
     })
   }

@@ -56,11 +56,11 @@ export default function Home() {
           <Grid container spacing={2}>
             <Grid item xs={12} md>
 
-              <Button variant="linear-pink" onClick={() => { handleClick('1') }}>
+              <Button variant="linear-pink" onClick={() => { handleClick('ces_service1.sh') }}>
 
                 <Box sx={{ maxWidth: '400' }}>
                   <div>
-                    BUTTON 1
+                    Vehicle Aggregation Service
                   </div>
                   <Divider style={{ background: 'white', margin: '7px 0px' }} />
                   <Stepper activeStep={-1} orientation="vertical">
@@ -79,16 +79,16 @@ export default function Home() {
               </Button>
             </Grid>
             <Grid item xs={12} md>
-              <Button variant="linear-blue">Button 2</Button>
+              <Button variant="linear-blue" onClick={() => { handleClick('ces_service2.sh') }}>Update Service</Button>
             </Grid>
             <Grid item xs={12} md>
-              <Button variant="linear-pink">Button 3</Button>
+              <Button variant="linear-pink" onClick={() => { handleClick('ces_enable_sdn.sh') }}>SDN Enable</Button>
             </Grid>
             <Grid item xs={12} md>
-              <Button variant="linear-blue">Button 4</Button>
+              <Button variant="linear-blue" onClick={() => { handleClick('ces_disable_sdn.sh') }}>SDN Disable</Button>
             </Grid>
             <Grid item xs={12} md>
-              <Button variant="linear-pink">Button 5</Button>
+              <Button variant="linear-pink" onClick={() => { handleClick('ces_reset.sh') }}>Reset</Button>
             </Grid>
           </Grid>
         </div>
