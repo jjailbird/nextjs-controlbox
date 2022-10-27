@@ -1,10 +1,27 @@
-const koa = require('koa');
-const serve = require('koa-static');
+const WebServer = require('./src/WebServer.js')
+const Router = require('koa-router');
 
-const webServerPort = 8088;
-const app = new koa();
+const port = 18088
+const server = new WebServer({
+  port,
+})
 
-app.use(serve(__dirname + '/out'));
-const server = app.listen(webServerPort);
 
-console.log('server start port:' + webServerPort);
+const router = new Router()
+
+router.get('/about', (ctx, next) => {
+  ctx.body = {
+    message: "소개"
+  };
+});
+
+server.SetStatic(__dirname + "/out")
+server.SetRouter(router)
+server.Start()
+console.log(`webserver on port http://localhost:${port} started`)
+
+process.on('SIGINT', async function() {
+  await server.Stop()
+  console.log('webserver terminated!!!')
+  process.exit()
+})
