@@ -15,8 +15,8 @@ export default function Home() {
   useEffect(() => {
     console.log('useEffect', process.env.serverPort)
     socket = io(`ws://${process.env.serverHost}:${process.env.serverPort}`)
-    socket.on("hello", (arg) => {
-      console.log(arg)
+    socket.on("bacend_response", (arg) => {
+      console.log('backend_resonse', arg)
     })
 
   })

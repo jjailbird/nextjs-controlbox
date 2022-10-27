@@ -8,6 +8,9 @@ const https = require('https')
 const { createHttpTerminator } = require('http-terminator')
 const { Server } = require('socket.io')
 const { exec } = require("child_process");
+const axios = require('axios')
+
+require("dotenv").config();
 
 class WebServer {
   constructor(config = {}) {
@@ -78,6 +81,30 @@ class WebServer {
           }
         });
 
+        s.emit('backend_resonse', arg)
+        
+        let command = ''
+        switch(arg) {
+          case 'ces_service1.sh':
+            command = 'cmd_DeployNewService'
+            break;
+          case 'ces_service2.sh':
+            command = 'cmd_DeployUpgradeService'
+            break;
+          case 'ces_enable_sdn.sh':
+            command = 'cmd_EnableSDN'
+            break;
+          case 'ces_disable_sdn.sh':
+            command = 'cmd_DisableSDN'
+            break;
+          case 'ces_reset.sh':
+            command = 'cmd_Reset'
+            break;  
+        }
+
+        axios(`${process.env.NTM_HOST}:${process.env.NTM_PORT}/buttonevent/${command}`)
+          .then(function(res){ console.log('send ok!')})
+          .catch(function(err){ console.log(err.request)});
       })
     })
   }
