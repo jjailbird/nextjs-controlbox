@@ -1,14 +1,14 @@
 const WebServer = require('./src/WebServer.js')
 const Router = require('koa-router');
 
-const port = 18088
+require("dotenv").config();
+
+const port = process.env.SERVER_PORT
 const server = new WebServer({
   port,
 })
 
-
 const router = new Router()
-
 router.get('/about', (ctx, next) => {
   ctx.body = {
     message: "소개"
