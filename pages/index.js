@@ -5,10 +5,23 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import {
   AppBar, Typography, Container, Grid, Button, Switch, Divider,
-  Box, Step, Stepper, StepLabel, StepContent, Paper
+  Box, Step, Stepper, StepLabel, StepContent, Paper, Modal
 } from "@mui/material"
 
-import { io } from "socket.io-client";
+import { io } from "socket.io-client"
+import axios from 'axios'
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function Home() {
   let socket = null;
@@ -21,9 +34,17 @@ export default function Home() {
 
   })
 
+  const [open, setOpen] = React.useState(false);
+
   function handleClick(command) {
+    if(command == 'ces_service1.sh') {
+      setOpen(true)
+    }
     socket.emit('backend_script', command)
   }
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div className={styles['container-vertical']}>
@@ -92,7 +113,21 @@ export default function Home() {
             </Grid>
           </Grid>
         </div>
-
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Text in a modal
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </Typography>
+          </Box>
+        </Modal>
         {/* <Container className={styles['container-vertical']}>
           <div>
             <span>With default Theme:</span>
