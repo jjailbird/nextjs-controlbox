@@ -7,6 +7,13 @@ require("dotenv").config();
 const port = process.env.SERVER_PORT
 const server = new WebServer({
   port,
+  // cors: {
+  //   origin: [
+  //     'http://ipv4.download.thinkbroadband.com', 
+  //     'http://localhost:18080',
+  //   ],
+  //   credentials: true, 
+  // }
 })
 
 const router = new Router()

@@ -6,6 +6,7 @@ const cors = require('@koa/cors')
 const http = require('http')
 const https = require('https')
 const { createHttpTerminator } = require('http-terminator')
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 require("dotenv").config();
 
@@ -34,10 +35,13 @@ class WebServer {
     this.httpTerminator = createHttpTerminator({
       server
     })
+
+    this.initMiddleWares()
   }
 
   initMiddleWares() {
-    this.app.use(cors(JSON.parse(this.cors)))
+    console.log('this.cors:', this.cors)
+    this.app.use(cors(this.cors))
     this.app.use(bodyParser())
 
     this.app.use(helmet.contentSecurityPolicy())
