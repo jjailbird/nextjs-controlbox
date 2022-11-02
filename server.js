@@ -1,5 +1,6 @@
 const WebServer = require('./src/WebServer.js')
 const Router = require('koa-router');
+const io = require('./src/socket.io')
 
 require("dotenv").config();
 
@@ -17,7 +18,7 @@ router.get('/about', (ctx, next) => {
 
 server.SetStatic(__dirname + "/out")
 server.SetRouter(router)
-server.SetSocketIo()
+server.SetSocketIo(io)
 server.Start()
 console.log(`webserver on port http://localhost:${port} started`)
 
