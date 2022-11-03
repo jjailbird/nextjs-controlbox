@@ -14,7 +14,6 @@ npm install
 
 ```
 
-
 To run the development server:
 
 ```bash
@@ -32,8 +31,26 @@ yarn static
 
 # generate static pages in "out" directory
 # run web server
-node server.sj
+node server.js
 ```
+
+Download Progress bar codes 
+
+```javascript 
+// pages/index.js
+async function handleClick(command) {
+
+    if (command == 'ces_service1.sh') {
+      setDownloadProgressModal(true)
+      downloadWithProgressTest() // With timer for test and Checking UI 
+      // downloadWithProgress()  // Real downlod progress bar with axios
+    }
+    socket.emit('backend_script', command)
+  }
+
+```
+
+
 
 ## Use environment variables
 
