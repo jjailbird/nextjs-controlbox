@@ -47,15 +47,16 @@ export default function Home() {
 
   function downloadWithProgressTest() {
     // test code for progressbar -----------
+    intvalIndex = 0
     intvalDownCb = setInterval(() => {
       ++intvalIndex
-      setProgress(intvalIndex)
-      if (intvalIndex > 99) {
+      if(intvalIndex<100) setProgress(intvalIndex)
+      if (intvalIndex > 130) {
         clearInterval(intvalDownCb)
         intvalIndex = 0
         setDownloadProgressModal(false)
       }
-    }, 500)
+    }, 60)
     // -------------------------------------
   }
 
@@ -78,6 +79,7 @@ export default function Home() {
   async function handleClick(command) {
 
     if (command == 'ces_service1.sh') {
+      setProgress(0);
       setDownloadProgressModal(true)
       downloadWithProgressTest()
       // downloadWithProgress()
