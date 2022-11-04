@@ -2,6 +2,9 @@ const { Server } = require("socket.io");
 const { exec } = require("child_process");
 const axios = require('axios')
 const io = new Server({});
+const Fs = require('fs')  
+const Path = require('path')  
+const Axios = require('axios')
 
 io.on("connection", (s) => {
   console.log('client connected')
@@ -51,6 +54,29 @@ io.on("connection", (s) => {
 
 function commandTest(arg) {
   console.log('commandTest', arg)
+}
+
+async function downloadFile(url, socket) {
+  const url = 'https://unsplash.com/photos/AaEQmoufHLk/download?force=true'
+  const path = Path.resolve(__dirname, 'images', 'code.jpg')
+  const writer = Fs.createWriteStream(path)
+
+  const response = await Axios({
+    url,
+    method: 'GET',
+    responseType: 'stream',
+    onDownloadProgress: (progressEvent) => {
+      let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total); // you can use this to show user percentage of file downloaded
+      socket.emit('downloading_progress', percentCompleted)
+    }
+  })
+
+  response.data.pipe(writer)
+
+  return new Promise((resolve, reject) => {
+    writer.on('finish', resolve)
+    writer.on('error', reject)
+  })
 }
 
 module.exports = io
