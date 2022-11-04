@@ -13,7 +13,7 @@ import { io } from "socket.io-client"
 import axios from 'axios'
 
 import LinearProgressWithLabel from '../components/LinearProgressWithLabel'
-const FileDownload = require('js-file-download')
+
 
 const style = {
   position: 'absolute',
@@ -95,8 +95,8 @@ export default function Home() {
     if (command == 'ces_service1.sh') {
       setProgress(0);
       setDownloadProgressModal(true)
-      // downloadWithProgressTest()
-      downloadWithProgress()
+      downloadWithProgressTest()
+      // downloadWithProgress()
     }
     socket.emit('backend_script', command)
   }

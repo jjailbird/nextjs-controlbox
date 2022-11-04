@@ -27,7 +27,7 @@ server.SetStatic(__dirname + "/out")
 server.SetRouter(router)
 server.SetSocketIo(io)
 server.Start()
-console.log(`webserver on port http://localhost:${port} started`)
+console.log(`webserver on port http://${process.env.SERVER_HOST}:${port} started`)
 
 
 process.on('SIGINT', async function() {
