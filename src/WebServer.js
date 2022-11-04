@@ -44,7 +44,14 @@ class WebServer {
     this.app.use(cors(this.cors))
     this.app.use(bodyParser())
 
-    this.app.use(helmet.contentSecurityPolicy())
+    // this.app.use(helmet.contentSecurityPolicy())
+    // this.app.use(
+    //   helmet.contentSecurityPolicy({
+    //     directives: {
+    //       'script-src-attr': null
+    //     }
+    //   })
+    // );
     this.app.use(helmet.dnsPrefetchControl())
     this.app.use(helmet.expectCt())
     this.app.use(helmet.frameguard())
