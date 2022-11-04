@@ -88,3 +88,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 [Executing Shell Commands with Node.js](https://stackabuse.com/executing-shell-commands-with-node-js/)
 
 [Download Files with Axios](https://thewebtier.com/snippets/download-files-with-axios/)
+
+[resct download progress bar with axios](https://github.com/codegeous/react-component-depot/blob/master/src/pages/FileDownloader/index.js)
+
+[Axios File Download in Node.js](https://futurestud.io/tutorials/download-files-images-with-axios-in-node-js)

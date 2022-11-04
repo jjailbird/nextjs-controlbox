@@ -13,6 +13,7 @@ import { io } from "socket.io-client"
 import axios from 'axios'
 
 import LinearProgressWithLabel from '../components/LinearProgressWithLabel'
+const FileDownload = require('js-file-download')
 
 const style = {
   position: 'absolute',
@@ -62,7 +63,7 @@ export default function Home() {
 
   async function downloadWithProgress() {
     await axios({
-      url: 'http://ipv4.download.thinkbroadband.com/512MB.zip',
+      url: 'http://localhost:18080/test.mkv',
       method: "GET",
       responseType: "blob", // important
       withCredentials: true,
@@ -73,6 +74,19 @@ export default function Home() {
           setDownloadProgressModal(false)
         } 
       }
+    }).then(response=>{
+     
+      const url = window.URL.createObjectURL(
+        new Blob([response.data], {
+          type: response.headers["content-type"],
+        })
+      );
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", 'test.mkv');
+      document.body.appendChild(link);
+      link.click();
     })
   }
 
@@ -81,8 +95,8 @@ export default function Home() {
     if (command == 'ces_service1.sh') {
       setProgress(0);
       setDownloadProgressModal(true)
-      downloadWithProgressTest()
-      // downloadWithProgress()
+      // downloadWithProgressTest()
+      downloadWithProgress()
     }
     socket.emit('backend_script', command)
   }
