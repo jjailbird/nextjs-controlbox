@@ -1,0 +1,44 @@
+html,
+body {
+  background-image: url('/images/bg-def.png');
+  height: 100%;
+
+  div#__next {
+    height: 100%;
+  }
+}
+
+.car-background {
+  position:absolute; 
+  left: 0px; 
+  top: 620px
+}
+
+.box-background {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+@font-face {
+  font-family: "NotoSantos";
+  src: url("/fonts/noto-sans/NotoSans-Regular.ttf");
+}
+
+.container {
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+
+  .box {
+    min-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+}

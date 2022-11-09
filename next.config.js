@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-
+const path = require('path')
 require("dotenv").config();
 
 const basePath = process.env.BASEPATH ?? "";
@@ -18,7 +18,10 @@ const nextConfig = {
   // for static page, if you run ssr remove below config
   images: {
     unoptimized: true
-  }
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   // ---------------------------------------------------
 }
 

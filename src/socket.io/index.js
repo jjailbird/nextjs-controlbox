@@ -8,7 +8,7 @@ const Axios = require('axios')
 
 
 io.on("connection", (s) => {
-  // console.log('client connected')
+  console.log('client connected')
 
   s.on('disconnect', (reason) => {
     console.log('client disconnected:', reason)

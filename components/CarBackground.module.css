@@ -1,0 +1,9 @@
+.box {
+  width: 1300px;
+  height: 620px;
+  position: absolute;
+  left: 0px;
+  top: 460px;
+  background-image: url('/images/img-car-1300x620.png');
+}
+

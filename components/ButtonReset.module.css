@@ -1,0 +1,19 @@
+.button {
+  vertical-align: middle;
+  border: 0px;
+  background: url("/images/btn-reset-normal.png") no-repeat;
+  width: 260px;
+  height: 120px;
+  position: absolute;
+  left: 60px;
+  top: 61px;
+  font-family: "NotoSantos";
+  font-size: 35px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+}
+

@@ -1,0 +1,29 @@
+.button {
+  vertical-align: middle;
+  border: 0px;
+  width: 380px;
+  height: 120px;
+  background: url("/images/btn-normal.png") no-repeat;
+  font-family: "NotoSantos";
+  font-size: 35px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_disable {
+  vertical-align: middle;
+  border: 0px;
+  width: 380px;
+  height: 120px;
+  background: url("/images/btn-disable.png") no-repeat;
+  font-family: "NotoSantos";
+  font-size: 35px;
+  color: gray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,38 @@
+.box {
+  width: 940px;
+  height: 460px;
+
+  position: absolute;
+  left: 910px;
+  top: 550px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box div.continer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.box div.divider {
+  width: 40px;
+}
+
+
+.box div.button {
+  padding: 10px;
+}
+
+
+.box div.text {
+  font-family: 'NotoSans';
+  font-size: 32px;
+  color: white;
+  margin-top: 30px;
+  text-align: center;
+}
+

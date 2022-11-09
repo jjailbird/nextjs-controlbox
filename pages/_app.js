@@ -1,14 +1,21 @@
-import '../styles/globals.css';
-import { ThemeProvider } from "@mui/material";
-import { theme } from "../utils/theme";
+import { RecoilRoot } from "recoil";
+import '../styles/reset.css'
+import '../styles/globals.scss';
+
+// import { ThemeProvider } from "@mui/material";
+// import { theme } from "../utils/theme";
+import CssBaseline from "@mui/material/CssBaseline";
 
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
+    <RecoilRoot>
       <Component {...pageProps} />
-    </ThemeProvider>
+    </ RecoilRoot>
+    // <ThemeProvider theme={theme}>
+    //   <Component {...pageProps} />
+    // </ThemeProvider>
   );
- }
- 
-export default MyApp
+}
+
+export default App
