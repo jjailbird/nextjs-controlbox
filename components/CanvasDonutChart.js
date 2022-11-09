@@ -13,13 +13,13 @@ const CanvasDonutChart = ({value = 0, width, height}) => {
 
     const start = 0 * Math.PI
     // const end = 1.5 * Math.PI
-    const end = 2 * (value/100)
-    
+    const end = (2 * (value/100)) * Math.PI  
+
     const x = canvas.width / 2;
     const y = canvas.height / 2;
     const startAngle = 0 * Math.PI;
     const endAngle = 2 * Math.PI;
-    const radius = 120;
+     const radius = 120;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
