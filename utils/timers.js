@@ -83,7 +83,7 @@ const asyncInterval = async (callback, ms, triesLeft = 5, skiperr) => {
   });
 }
 
-module.exports = {
+export {
   intervalPolling,
   timeoutPolling,
   sleepPolling,
