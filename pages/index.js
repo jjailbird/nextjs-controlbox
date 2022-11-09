@@ -17,7 +17,7 @@ export default function Home() {
 
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastPong, setLastPong] = useState(null);
-
+  const [downloadValue, setDownloadValue] = useState(0);
   const [download, setDownload] = useState(false)
 
   function startDownload() {
@@ -50,8 +50,20 @@ export default function Home() {
   }, []);
 
   async function handleClick(command) {
-
     if (command == 'ces_service1.sh') {
+      setDownload(true)
+      let count = 0
+      const interval = setInterval(() => {
+        setDownloadValue(count)
+        count++
+        if (count >= 100) {
+          setDownload(false)
+          clearInterval(interval)
+          count = 0
+        } 
+      }, 200)
+      
+      
       // setProgress(0);
       // setDownloadProgressModal(true)
       // downloadWithProgressTest()
@@ -63,7 +75,7 @@ export default function Home() {
   return (
     <div>
       <ButtonReset onClick={() => { handleClick('ces_reset.sh') }}>Reset</ButtonReset>
-      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={!isConnected} />
+      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={false} download={download} downloadValue={downloadValue} />
       <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={!isConnected} />
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!isConnected} />
       <CarBackground />

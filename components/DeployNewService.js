@@ -28,14 +28,14 @@ function CircularProgressWithLabel(props) {
   );
 }
 
-export default function DeployNewService({ onClick, download = false, disabled = false }) {
+export default function DeployNewService({ onClick, download = false, disabled = false, downloadValue = 0 }) {
   if (download) {
     return (
       <div className={`box-background ${style.box}`}>
         <div className={`${style.continer}`}>
           <div>
             {/* <CircularProgressWithLabel  value={50} /> */}
-            <CanvasDonutChart width="250" height="250" value="70" />
+            <CanvasDonutChart width="250" height="250" value={downloadValue} />
           </div>
           <div className={`${style.downloading}`}>
             Downloading...
