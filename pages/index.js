@@ -77,7 +77,7 @@ export default function Home() {
   return (
     <div>
       <ButtonReset onClick={() => { handleClick('ces_reset.sh') }}>Reset</ButtonReset>
-      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={false} download={download} downloadValue={downloadValue} />
+      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={false} download={!isConnected} downloadValue={downloadValue} />
       <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={!isConnected} />
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!isConnected} />
       <CarBackground />
