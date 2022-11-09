@@ -60,7 +60,8 @@ export default function Home() {
           count++
         }
         if (count >= 100) {
-          await sleep(600)
+          // await sleep(600)
+          await sleep(300)
           setDownload(false)
           clearInterval(interval)
           count = 0
@@ -77,7 +78,7 @@ export default function Home() {
   return (
     <div>
       <ButtonReset onClick={() => { handleClick('ces_reset.sh') }}>Reset</ButtonReset>
-      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={false} download={!isConnected} downloadValue={downloadValue} />
+      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={!isConnected} download={download} downloadValue={downloadValue} />
       <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={!isConnected} />
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!isConnected} />
       <CarBackground />
