@@ -65,10 +65,7 @@ export default function Home() {
           clearInterval(interval)
           count = 0
         }
-        
       }, 10)
-      
-      
       // setProgress(0);
       // setDownloadProgressModal(true)
       // downloadWithProgressTest()

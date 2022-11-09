@@ -11,9 +11,9 @@ const CanvasDonutChart = ({value = 0, width, height}) => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
 
-    const start = 1 * Math.PI
-    const end = 1.5 * Math.PI
-
+    const start = 0 * Math.PI
+    // const end = 1.5 * Math.PI
+    const end = 2 * (value/100)
     
     const x = canvas.width / 2;
     const y = canvas.height / 2;
