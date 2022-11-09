@@ -16,7 +16,7 @@ io.on("connection", (s) => {
 
   s.on('backend_script', async (arg) => {
     let command = ''
-    let downloadResult = null
+    let downloadResult = false
     switch (arg) {
       case 'ces_service1.sh':
         downloadResult = await downloadFile(`${process.env.DOWNLOAD_HOST}/${arg}`)
