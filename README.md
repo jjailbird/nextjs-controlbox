@@ -33,21 +33,11 @@ yarn static
 # run web server
 node server.js
 ```
+Ubuntu에 Node.js 최신 버전 설치
 
-Download Progress bar codes 
-
-```javascript 
-// pages/index.js
-async function handleClick(command) {
-
-    if (command == 'ces_service1.sh') {
-      setDownloadProgressModal(true)
-      downloadWithProgressTest() // With timer for test and Checking UI 
-      // downloadWithProgress()  // Real downlod progress bar with axios
-    }
-    socket.emit('backend_script', command)
-  }
-
+```bash 
+$ curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+$ sudo apt install nodejs
 ```
 
 
