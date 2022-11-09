@@ -10,6 +10,7 @@ import SDN from '../components/SDN'
 import CarBackground from '../components/CarBackground';
 
 import { io } from "socket.io-client"
+import { sleep } from '../utils/timers'
 
 const socket = io(`ws://${process.env.serverHost}:${process.env.serverPort}`)
 
@@ -53,15 +54,19 @@ export default function Home() {
     if (command == 'ces_service1.sh') {
       setDownload(true)
       let count = 0
-      const interval = setInterval(() => {
+      const interval = setInterval(async () => {
         setDownloadValue(count)
-        count++
+        if (count < 100) {
+          count++
+        }
         if (count >= 100) {
+          await sleep(600)
           setDownload(false)
           clearInterval(interval)
           count = 0
-        } 
-      }, 200)
+        }
+        
+      }, 10)
       
       
       // setProgress(0);
