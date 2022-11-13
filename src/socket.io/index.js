@@ -7,7 +7,7 @@ const Path = require('path')
 const Axios = require('axios');
 const { LocalConvenienceStoreOutlined } = require("@mui/icons-material");
 const path = require("path");
-
+const { sleep } = require('../timer')
 
 io.on("connection", (s) => {
   console.log('client connected')
@@ -48,8 +48,15 @@ io.on("connection", (s) => {
         break;
     }
 
-    const command0 = `chmod +x ~/ces/scripts/${arg}`
-    const command1 = `sh ~/ces/scripts/${arg}`
+    // const command0 = `chmod +x ~/ces/scripts/${arg}`
+    // let command1 = `sh ~/ces/scripts/${arg}`
+    const command0 = `chmod +x ${process.env.CES_PATH}/scripts/${arg}`
+    let command1 = `sh ${process.env.CES_PATH}/scripts/${arg}`
+    if (downloadResult != false) {
+      command1 = `sh ${process.env.CES_PATH}/scripts/backup/${arg}`
+    }
+
+    await sleep(1000)
 
     var result = exec(`${command0} && ${command1}`,
       (error, stdout, stderr) => {
