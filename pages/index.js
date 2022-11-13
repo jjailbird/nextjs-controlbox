@@ -8,6 +8,7 @@ import DeployNewService from '../components/DeployNewService'
 import DeployUpgradeService from '../components/DeployUpgradeService'
 import SDN from '../components/SDN'
 import CarBackground from '../components/CarBackground';
+import ModalBasic from '../components/ModalBasic';
 
 import { io } from "socket.io-client"
 import { sleep } from '../utils/timers'
@@ -23,6 +24,8 @@ export default function Home() {
   const [downloadValue2, setDownloadValue2] = useState(0);
   const [download2, setDownload2] = useState(false)
 
+  const [modalDeployed, setModalDeployed ] = useState(false)
+  const [modalUpgraded, setModalUpgraded ] = useState(false)
 
   function startDownload() {
     setDownload(!download)
@@ -48,6 +51,29 @@ export default function Home() {
     };
   }, []);
 
+  async function openModalDeployed() {
+    setModalDeployed(true)
+    // await sleep(500)
+    // setModalDeployed(false)
+  }
+
+  function closeModalDeployed() {
+    setModalDeployed(false)
+    setDownload(false)
+  }
+
+  async function openModalUpgraded() {
+    setModalUpgraded(true)
+    // await sleep(500)
+    // setModalDeployed(false)
+  }
+
+  function closeModalUpgraded() {
+    setModalUpgraded(false)
+    setDownload2(false)
+  }
+
+
   async function handleClick(command) {
     if (command == 'ces_service1.sh') {
       setDownload(true)
@@ -58,8 +84,9 @@ export default function Home() {
           count++
         }
         if (count >= 100) {
-          await sleep(400)
-          setDownload(false)
+          await sleep(100)
+          openModalDeployed()
+          // setDownload(false)
           clearInterval(interval)
           count = 0
         }
@@ -73,8 +100,9 @@ export default function Home() {
           count++
         }
         if (count >= 100) {
-          await sleep(400)
-          setDownload2(false)
+          await sleep(100)
+          openModalUpgraded()
+          // setDownload2(false)
           clearInterval(interval)
           count = 0
         }
@@ -91,6 +119,13 @@ export default function Home() {
       <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={false} download={download2} downloadValue={downloadValue2} />
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!isConnected} />
       <CarBackground />
+      <ModalBasic open={modalDeployed} onClose={closeModalDeployed}>
+        New Service was deployed.
+      </ModalBasic>
+      <ModalBasic open={modalUpgraded} onClose={closeModalUpgraded}>
+        Service has been upgraded.
+      </ModalBasic>
+
     </div>
   )
 }

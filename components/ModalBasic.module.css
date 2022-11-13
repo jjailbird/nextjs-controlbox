@@ -1,0 +1,17 @@
+.modal_basic {
+  position: 'absolute';
+  top: '50%';
+  left: '50%';
+  transform: 'translate(-50%, -50%)';
+  border: '2px solid #000';
+  border-radius: 10px;
+  box-shadow: 24;
+  display: flex;
+  justify-content: center;
+}
+
+.modal_basic div {
+  width: 1200px;
+  background-color: "#000";
+  color: '#000';
+}
