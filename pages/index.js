@@ -17,7 +17,6 @@ const socket = io(`ws://${process.env.serverHost}:${process.env.serverPort}`)
 export default function Home() {
 
   const [isConnected, setIsConnected] = useState(socket.connected);
-  const [lastPong, setLastPong] = useState(null);
   const [downloadValue, setDownloadValue] = useState(0);
   const [download, setDownload] = useState(false)
 
@@ -37,11 +36,7 @@ export default function Home() {
     socket.on('disconnect', () => {
       setIsConnected(false)
     });
-
-    socket.on('pong', () => {
-      setLastPong(new Date().toISOString());
-    });
-
+ 
     socket.on("bacend_response", (arg) => {
       console.log('backend_resonse', arg)
     })
@@ -49,7 +44,6 @@ export default function Home() {
     return () => {
       socket.off('connect');
       socket.off('disconnect');
-      socket.off('pong');
       socket.off('bacend_response');
     };
   }, []);
