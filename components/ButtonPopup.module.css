@@ -1,0 +1,31 @@
+.button {
+  vertical-align: middle;
+  border: 0px;
+  width: 380px;
+  height: 130px;
+  background: url("/images/btn-popup-normal.png") no-repeat;
+  font-family: "NotoSantos";
+  font-size: 33px;
+  color: white;
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: center; */
+  justify-content: center;
+  padding: 16px 20px;
+
+}
+
+.button_disable {
+  vertical-align: middle;
+  border: 0px;
+  width: 380px;
+  height: 130px;
+  background: url("/images/btn-popup-normal.png") no-repeat;
+  font-family: "NotoSantos";
+  font-size: 33px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

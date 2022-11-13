@@ -9,6 +9,7 @@ import DeployUpgradeService from '../components/DeployUpgradeService'
 import SDN from '../components/SDN'
 import CarBackground from '../components/CarBackground';
 import ModalBasic from '../components/ModalBasic';
+import ModalReset from '../components/ModalReset';
 
 import { io } from "socket.io-client"
 import { sleep } from '../utils/timers'
@@ -24,8 +25,9 @@ export default function Home() {
   const [downloadValue2, setDownloadValue2] = useState(0);
   const [download2, setDownload2] = useState(false)
 
-  const [modalDeployed, setModalDeployed ] = useState(false)
-  const [modalUpgraded, setModalUpgraded ] = useState(false)
+  const [modalDeployed, setModalDeployed] = useState(false)
+  const [modalUpgraded, setModalUpgraded] = useState(false)
+  const [modalReset, setModalReset] = useState(false)
 
   function startDownload() {
     setDownload(!download)
@@ -39,7 +41,7 @@ export default function Home() {
     socket.on('disconnect', () => {
       setIsConnected(false)
     });
- 
+
     socket.on("bacend_response", (arg) => {
       console.log('backend_resonse', arg)
     })
@@ -73,6 +75,19 @@ export default function Home() {
     setDownload2(false)
   }
 
+  function openModalReset() {
+    setModalReset(true)
+  }
+
+  function closeModalReset() {
+    setModalReset(false)
+  }
+
+  async function executeReset() {
+    socket.emit('backend_script', 'ces_reset.sh')
+    await sleep(200)
+    setModalReset(false)
+  }
 
   async function handleClick(command) {
     if (command == 'ces_service1.sh') {
@@ -113,14 +128,14 @@ export default function Home() {
   }
 
   function hidden_close() {
-    if(window.confirm('Do you really wat to close?')) {
+    if (window.confirm('Do you really wat to close?')) {
       window.close()
     }
   }
 
   return (
     <div>
-      <ButtonReset onClick={() => { handleClick('ces_reset.sh') }}>Reset</ButtonReset>
+      <ButtonReset onClick={() => { openModalReset() }}>Reset</ButtonReset>
       <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={false} download={download} downloadValue={downloadValue} />
       <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={false} download={download2} downloadValue={downloadValue2} />
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!isConnected} />
@@ -131,6 +146,9 @@ export default function Home() {
       <ModalBasic open={modalUpgraded} onClose={closeModalUpgraded}>
         Service has been upgraded.
       </ModalBasic>
+      <ModalReset open={modalReset} onClose={closeModalReset} onClick1={executeReset} onClick2={closeModalReset}>
+        Do you really want to reset it?
+      </ModalReset>
       <div id="hidden_close" onClick={hidden_close}></div>
     </div>
   )
