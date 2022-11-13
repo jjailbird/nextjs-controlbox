@@ -14,6 +14,23 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
 
+.button_disable {
+  vertical-align: middle;
+  border: 0px;
+  background: url("/images/btn-reset-disable.png") no-repeat;
+  width: 260px;
+  height: 120px;
+  position: absolute;
+  left: 60px;
+  top: 61px;
+  font-family: "NotoSantos";
+  font-size: 35px;
+  color: #999;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 

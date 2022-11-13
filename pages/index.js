@@ -21,7 +21,7 @@ export default function Home() {
   const [enableDeploy, setEnableDeploy] = useState(false)
   const [enableUpgrade, setEnableUpgrade] = useState(false)
   const [enableSDN, setEnableSDN] = useState(false)
-  const [enableRest, setEnableReset] = useState(false)
+  const [enableReset, setEnableReset] = useState(false)
    
 
   const [isConnected, setIsConnected] = useState(socket.connected);
@@ -42,8 +42,9 @@ export default function Home() {
 
   useEffect(() => {
     socket.on('connect', () => {
-      setEnableDeploy(true)
       setIsConnected(true)
+      setEnableDeploy(true)
+      setEnableReset(true)
     });
 
     socket.on('disconnect', () => {
@@ -95,6 +96,11 @@ export default function Home() {
     socket.emit('backend_script', 'ces_reset.sh')
     await sleep(200)
     setModalReset(false)
+
+    setEnableDeploy(true)
+    setEnableUpgrade(false)
+    setEnableSDN(false)
+    
   }
 
   async function handleClick(command) {
@@ -112,6 +118,10 @@ export default function Home() {
         if (count >= 100) {
           await sleep(100)
           openModalDeployed()
+          // setEnableReset(true)
+          setEnableUpgrade(true)
+          setEnableDeploy(false)
+          setEnableSDN(false)
           // setDownload(false)
           clearInterval(interval)
           count = 0
@@ -131,6 +141,10 @@ export default function Home() {
         if (count >= 100) {
           await sleep(100)
           openModalUpgraded()
+          // setEnableReset(true)
+          setEnableDeploy(false)
+          setEnableUpgrade(false)
+          setEnableSDN(true)
           // setDownload2(false)
           clearInterval(interval)
           count = 0
@@ -153,7 +167,7 @@ export default function Home() {
 
   return (
     <div>
-      <ButtonReset onClick={() => { openModalReset() }}>Reset</ButtonReset>
+      <ButtonReset onClick={() => { openModalReset() }} disabled={!enableReset}>Reset</ButtonReset>
       <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={!enableDeploy} download={download} downloadValue={downloadValue} />
       <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={!enableUpgrade} download={download2} downloadValue={downloadValue2} />
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!enableSDN} />
