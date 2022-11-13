@@ -18,6 +18,12 @@ const socket = io(`ws://${process.env.serverHost}:${process.env.serverPort}`)
 
 export default function Home() {
 
+  const [enableDeploy, setEnableDeploy] = useState(false)
+  const [enableUpgrade, setEnableUpgrade] = useState(false)
+  const [enableSDN, setEnableSDN] = useState(false)
+  const [enableRest, setEnableReset] = useState(false)
+   
+
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [downloadValue, setDownloadValue] = useState(0);
   const [download, setDownload] = useState(false)
@@ -28,6 +34,7 @@ export default function Home() {
   const [modalDeployed, setModalDeployed] = useState(false)
   const [modalUpgraded, setModalUpgraded] = useState(false)
   const [modalReset, setModalReset] = useState(false)
+ 
 
   function startDownload() {
     setDownload(!download)
@@ -35,6 +42,7 @@ export default function Home() {
 
   useEffect(() => {
     socket.on('connect', () => {
+      setEnableDeploy(true)
       setIsConnected(true)
     });
 
@@ -91,6 +99,9 @@ export default function Home() {
 
   async function handleClick(command) {
     if (command == 'ces_service1.sh') {
+      if (!enableDeploy) {
+        return
+      }
       setDownload(true)
       let count = 0
       const interval = setInterval(async () => {
@@ -107,6 +118,9 @@ export default function Home() {
         }
       }, 10)
     } else if (command == 'ces_service2.sh') {
+      if (!enableUpgrade) {
+        return 
+      }
       setDownload2(true)
       let count = 0
       const interval = setInterval(async () => {
@@ -122,6 +136,10 @@ export default function Home() {
           count = 0
         }
       }, 10)
+    } else if (command == 'ces_enable_sdn') {
+      if (!enableSDN) {
+        return 
+      }
     }
 
     socket.emit('backend_script', command)
@@ -136,9 +154,9 @@ export default function Home() {
   return (
     <div>
       <ButtonReset onClick={() => { openModalReset() }}>Reset</ButtonReset>
-      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={false} download={download} downloadValue={downloadValue} />
-      <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={false} download={download2} downloadValue={downloadValue2} />
-      <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!isConnected} />
+      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={!enableDeploy} download={download} downloadValue={downloadValue} />
+      <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={!enableUpgrade} download={download2} downloadValue={downloadValue2} />
+      <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!enableSDN} />
       <CarBackground />
       <ModalBasic open={modalDeployed} onClose={closeModalDeployed}>
         New Service was deployed.
