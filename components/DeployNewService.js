@@ -28,7 +28,7 @@ function CircularProgressWithLabel(props) {
   );
 }
 
-export default function DeployNewService({ onClick, download = false, disabled = false, downloadValue = 0 }) {
+export default function DeployNewService({ onClick, disabled = false, download = false, downloadValue = 0 }) {
   if (download) {
     return (
       <div className={`box-background ${style.box}`}>

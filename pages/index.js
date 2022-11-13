@@ -21,6 +21,10 @@ export default function Home() {
   const [downloadValue, setDownloadValue] = useState(0);
   const [download, setDownload] = useState(false)
 
+  const [downloadValue2, setDownloadValue2] = useState(0);
+  const [download2, setDownload2] = useState(false)
+
+
   function startDownload() {
     setDownload(!download)
   }
@@ -60,26 +64,37 @@ export default function Home() {
           count++
         }
         if (count >= 100) {
-          // await sleep(600)
-          await sleep(300)
+          await sleep(400)
           setDownload(false)
           clearInterval(interval)
           count = 0
         }
       }, 10)
-      // setProgress(0);
-      // setDownloadProgressModal(true)
-      // downloadWithProgressTest()
-      // downloadWithProgress()
+    } else if (command == 'ces_service2.sh') {
+      setDownload2(true)
+      let count = 0
+      const interval = setInterval(async () => {
+        setDownloadValue2(count)
+        if (count < 100) {
+          count++
+        }
+        if (count >= 100) {
+          await sleep(400)
+          setDownload2(false)
+          clearInterval(interval)
+          count = 0
+        }
+      }, 10)
     }
+
     socket.emit('backend_script', command)
   }
 
   return (
     <div>
       <ButtonReset onClick={() => { handleClick('ces_reset.sh') }}>Reset</ButtonReset>
-      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={!isConnected} download={download} downloadValue={downloadValue} />
-      <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={!isConnected} />
+      <DeployNewService onClick={() => { handleClick('ces_service1.sh') }} disabled={false} download={download} downloadValue={downloadValue} />
+      <DeployUpgradeService onClick={() => { handleClick('ces_service2.sh') }} disabled={false} download={download2} downloadValue={downloadValue2} />
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!isConnected} />
       <CarBackground />
     </div>

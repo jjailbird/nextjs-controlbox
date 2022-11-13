@@ -19,7 +19,7 @@ const CanvasDonutChart = ({value = 0, width, height}) => {
     const y = canvas.height / 2;
     const startAngle = 0 * Math.PI;
     const endAngle = 2 * Math.PI;
-     const radius = 120;
+    const radius = 120;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -34,8 +34,8 @@ const CanvasDonutChart = ({value = 0, width, height}) => {
     context.arc(x, y, radius, start, end, false);
     context.lineWidth = 3;
 
-    const grd = context.createLinearGradient(0, 0, 200, 0)
-    grd.addColorStop(0, "blue");
+    const grd = context.createLinearGradient(50, 100, 200, 300)
+    grd.addColorStop(0, "#4f67c9");
     grd.addColorStop(1, "white");
     context.strokeStyle = grd;
     context.stroke();
@@ -43,12 +43,13 @@ const CanvasDonutChart = ({value = 0, width, height}) => {
     context.font = '60px NotoSans'
     context.fillStyle = 'white'
 
-    if (value.length == 1) {
+
+    if (value < 10) {
       context.fillText(value, x - 14, y + 8)
-      console.log('length 1')
-    } else {
+    } else if (value < 100) {
       context.fillText(value, x - 32, y + 8)
-      console.log('length 2')
+    } else {
+      context.fillText(value, x - 50, y + 8)
     }
 
     context.font = '32px NotoSans'
