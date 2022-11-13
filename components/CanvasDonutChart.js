@@ -52,7 +52,7 @@ const CanvasDonutChart = ({value = 0, width, height}) => {
     }
 
     context.font = '32px NotoSans'
-    context.fillStyle = 'gray'
+    context.fillStyle = '#ccc'
     context.fillText('%', x - 10, y + 48)
     
     // context.font = '10pt Arial';
