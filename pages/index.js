@@ -112,6 +112,12 @@ export default function Home() {
     socket.emit('backend_script', command)
   }
 
+  function hidden_close() {
+    if(window.confirm('Do you really wat to close?')) {
+      window.close()
+    }
+  }
+
   return (
     <div>
       <ButtonReset onClick={() => { handleClick('ces_reset.sh') }}>Reset</ButtonReset>
@@ -125,7 +131,7 @@ export default function Home() {
       <ModalBasic open={modalUpgraded} onClose={closeModalUpgraded}>
         Service has been upgraded.
       </ModalBasic>
-
+      <div id="hidden_close" onClick={hidden_close}></div>
     </div>
   )
 }
