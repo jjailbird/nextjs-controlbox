@@ -161,6 +161,7 @@ export default function Home() {
 
   function hidden_close() {
     if (window.confirm('Do you really wat to close?')) {
+      window.open('','_parent','')
       window.close()
     }
   }
