@@ -22,8 +22,7 @@ export default function Home() {
   const [enableUpgrade, setEnableUpgrade] = useState(false)
   const [enableSDN, setEnableSDN] = useState(false)
   const [enableReset, setEnableReset] = useState(false)
-   
-
+ 
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [downloadValue, setDownloadValue] = useState(0);
   const [download, setDownload] = useState(false)
@@ -35,7 +34,6 @@ export default function Home() {
   const [modalUpgraded, setModalUpgraded] = useState(false)
   const [modalReset, setModalReset] = useState(false)
  
-
   function startDownload() {
     setDownload(!download)
   }
@@ -64,6 +62,10 @@ export default function Home() {
 
   async function openModalDeployed() {
     setModalDeployed(true)
+
+    setTimeout(() => {
+      closeModalDeployed()
+    }, 2000)
     // await sleep(500)
     // setModalDeployed(false)
   }
@@ -75,6 +77,10 @@ export default function Home() {
 
   async function openModalUpgraded() {
     setModalUpgraded(true)
+
+    setTimeout(() => {
+      closeModalUpgraded()
+    }, 2000)
     // await sleep(500)
     // setModalDeployed(false)
   }
@@ -100,7 +106,6 @@ export default function Home() {
     setEnableDeploy(true)
     setEnableUpgrade(false)
     setEnableSDN(false)
-    
   }
 
   async function handleClick(command) {
