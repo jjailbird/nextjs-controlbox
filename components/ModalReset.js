@@ -22,6 +22,7 @@ const style = {
   borderRadius: 7,
   boxShadow: 24,
   p: 4,
+  
 };
 
 export default function ModalReset({ open, onClose, children, onClick1, onClick2 }) {

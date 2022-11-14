@@ -66,8 +66,6 @@ export default function Home() {
     setTimeout(() => {
       closeModalDeployed()
     }, 2000)
-    // await sleep(500)
-    // setModalDeployed(false)
   }
 
   function closeModalDeployed() {

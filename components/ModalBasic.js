@@ -12,6 +12,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 1200,
+
   // height: 120,
   bgcolor: 'background.paper',
   border: '2px solid #000',
@@ -30,8 +31,8 @@ export default function ModalBasic({ open, onClose, children }) {
         {/* <div className={style.modal_basic}>
           <div>{children}</div>
         </div> */}
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h1" align='center' fontFamily={'NotoSantos'} fontWeight={'bold'}>
+        <Box sx={style} marginTop={-25}>
+          <Typography id="modal-modal-title" variant="h6" component="h1" align='center' fontFamily={'NotoSantos'} fontWeight={'bold'} fontSize={34}>
             {children}
           </Typography>
         </Box>
