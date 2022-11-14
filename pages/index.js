@@ -18,7 +18,7 @@ const socket = io(`ws://${process.env.serverHost}:${process.env.serverPort}`)
 
 export default function Home() {
 
-  const [enableDeploy, setEnableDeploy] = useState(false)
+  const [enableDeploy, setEnableDeploy] = useState(true)
   const [enableUpgrade, setEnableUpgrade] = useState(false)
   const [enableSDN, setEnableSDN] = useState(false)
   const [enableReset, setEnableReset] = useState(false)
@@ -155,13 +155,16 @@ export default function Home() {
           count = 0
         }
       }, 10)
-    } else if (command == 'ces_enable_sdn') {
+    } else if (command == 'ces_enable_sdn.sh') {
       if (!enableSDN) {
         return 
       }
+      setTimeout(()=>{
+        setEnableSDN(false)
+      }, 300)
     }
-
     socket.emit('backend_script', command)
+
   }
 
   function hidden_close() {
