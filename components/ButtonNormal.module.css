@@ -21,7 +21,7 @@
   background: url("/images/btn-disable.png") no-repeat;
   font-family: "NotoSantos";
   font-size: 35px;
-  color: gray;
+  color: #bbb;
   display: flex;
   flex-direction: row;
   align-items: center;
