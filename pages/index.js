@@ -194,13 +194,13 @@ export default function Home() {
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!enableSDN} />
       <CarBackground />
       <ModalBasic open={modalDeployed} onClose={closeModalDeployed}>
-        New Service has been deployed.
+        Data Aggregation Service deployed.
       </ModalBasic>
       <ModalBasic open={modalUpgraded} onClose={closeModalUpgraded}>
-        Service has been upgraded.
+        Data Aggregation Service upgraded.
       </ModalBasic>
       <ModalBasic open={modaSDNEnabled} onClose={closeModalSDNEnabled}>
-        SDN has been enabled.
+        SDN enabled.
       </ModalBasic>
       <ModalReset open={modalReset} onClose={closeModalReset} onClick1={executeReset} onClick2={closeModalReset}>
         Do you really want to reset it?

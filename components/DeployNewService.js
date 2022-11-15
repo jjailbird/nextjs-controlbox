@@ -51,10 +51,12 @@ export default function DeployNewService({ onClick, disabled = false, download =
             <Image src="/images/icon-setting.png" alt="setting" width={120} height={120} />
           </div>
           <div className={`${style.text}`}>
-            Deploy New Service
+            Data Aggregation Service
+            <br/>
+            (Body)
           </div>
           <div className={`${style.button}`}>
-            <ButtonNormal onClick={onClick} disabled={disabled}>Start</ButtonNormal>
+            <ButtonNormal onClick={onClick} disabled={disabled}>Deploy</ButtonNormal>
           </div>
         </div>
       </div>

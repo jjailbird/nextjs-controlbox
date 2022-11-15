@@ -47,18 +47,48 @@ Toast(popup) 메시지 문구 수정하기
 ```javascript
   ...
       <ModalBasic open={modalDeployed} onClose={closeModalDeployed}>
-        New Service has been deployed.
+        Data Aggregation Service deployed.
       </ModalBasic>
       <ModalBasic open={modalUpgraded} onClose={closeModalUpgraded}>
-        Service has been upgraded.
+        Data Aggregation Service upgraded.
       </ModalBasic>
       <ModalBasic open={modaSDNEnabled} onClose={closeModalSDNEnabled}>
-        SDN has been enabled.
+        SDN enabled.
       </ModalBasic>
       <ModalReset open={modalReset} onClose={closeModalReset} onClick1={executeReset} onClick2={closeModalReset}>
         Do you really want to reset it?
       </ModalReset>
   ...
+```
+
+Deploy 영역 수정하기
+
+- components/DeplyNewService.js
+
+```javascript
+  ...
+  <div className={`${style.text}`}>
+    Data Aggregation Service
+    <br/>
+    (Body)
+  </div>
+  ...
+
+```
+
+Upgrade 영역 수정하기
+
+- components/DeplyUpgradeService.js
+
+```javascript
+  ...
+  <div className={`${style.text}`}>
+    Data Aggregation Service
+    <br/>
+    (Body + Camera)
+  </div>
+  ...
+
 ```
 
 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

@@ -27,7 +27,9 @@ export default function DeployUpgradeService({ onClick, disabled = false, downlo
             <Image src="/images/icon-download.png" width={120} height={120} alt="download" />
           </div>
           <div className={`${style.text}`}>
-            Deploy Upgrade Service
+            Deploy Aggregation Service
+            <br />
+            (Body + Camera)
           </div>
           <div className={`${style.button}`}>
             <ButtonNormal disabled={disabled} onClick={onClick}>Upgrade</ButtonNormal>
