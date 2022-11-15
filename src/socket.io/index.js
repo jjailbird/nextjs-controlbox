@@ -23,13 +23,19 @@ io.on("connection", (s) => {
 
     switch (arg) {
       case 'ces_service1.sh':
-        if (!Fs.existsSync(filePath)) {
+        if (Fs.existsSync(filePath)) {
+          downloadResult = true
+        }
+        else {
           downloadResult = await downloadFile(`${process.env.DOWNLOAD_HOST}/${arg}`, filePath)
         }
         command = 'cmd_DeployNewService'
         break;
       case 'ces_service2.sh':
-        if (!Fs.existsSync(filePath)) {
+        if (Fs.existsSync(filePath)) {
+          downloadResult = true
+        }
+        else {
           downloadResult = await downloadFile(`${process.env.DOWNLOAD_HOST}/${arg}`, filePath)
         }
         command = 'cmd_DeployUpgradeService'
