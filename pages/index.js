@@ -32,6 +32,7 @@ export default function Home() {
 
   const [modalDeployed, setModalDeployed] = useState(false)
   const [modalUpgraded, setModalUpgraded] = useState(false)
+  const [modaSDNEnabled, setModalSDNEnabled] = useState(false)
   const [modalReset, setModalReset] = useState(false)
  
   function startDownload() {
@@ -79,13 +80,28 @@ export default function Home() {
     setTimeout(() => {
       closeModalUpgraded()
     }, 2000)
-    // await sleep(500)
-    // setModalDeployed(false)
   }
 
   function closeModalUpgraded() {
     setModalUpgraded(false)
     setDownload2(false)
+  }
+
+  function openModalSDNEnabled() {
+    setEnableSDN(false)
+    
+    setTimeout(()=>{
+      setModalSDNEnabled(true)
+    }, 1000)
+
+    setTimeout(() => {
+      closeModalSDNEnabled()
+    }, 
+    2500)
+  }
+
+  function closeModalSDNEnabled() {
+    setModalSDNEnabled(false)
   }
 
   function openModalReset() {
@@ -157,9 +173,7 @@ export default function Home() {
       if (!enableSDN) {
         return 
       }
-      setTimeout(()=>{
-        setEnableSDN(false)
-      }, 300)
+      openModalSDNEnabled()
     }
     socket.emit('backend_script', command)
 
@@ -180,9 +194,12 @@ export default function Home() {
       <SDN onClick={() => { handleClick('ces_enable_sdn.sh') }} disabled={!enableSDN} />
       <CarBackground />
       <ModalBasic open={modalDeployed} onClose={closeModalDeployed}>
-        New Service was deployed.
+        New Service has been deployed.
       </ModalBasic>
       <ModalBasic open={modalUpgraded} onClose={closeModalUpgraded}>
+        Service has been upgraded.
+      </ModalBasic>
+      <ModalBasic open={modaSDNEnabled} onClose={closeModalSDNEnabled}>
         Service has been upgraded.
       </ModalBasic>
       <ModalReset open={modalReset} onClose={closeModalReset} onClick1={executeReset} onClick2={closeModalReset}>

@@ -40,6 +40,27 @@ $ curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 $ sudo apt install nodejs
 ```
 
+Toast(popup) 메시지 문구 수정하기
+
+-  pages/index.js 196 lines
+
+```javascript
+  ...
+      <ModalBasic open={modalDeployed} onClose={closeModalDeployed}>
+        New Service has been deployed.
+      </ModalBasic>
+      <ModalBasic open={modalUpgraded} onClose={closeModalUpgraded}>
+        Service has been upgraded.
+      </ModalBasic>
+      <ModalBasic open={modaSDNEnabled} onClose={closeModalSDNEnabled}>
+        Service has been upgraded.
+      </ModalBasic>
+      <ModalReset open={modalReset} onClose={closeModalReset} onClick1={executeReset} onClick2={closeModalReset}>
+        Do you really want to reset it?
+      </ModalReset>
+  ...
+```
+
 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
 
 ## Use environment variables
