@@ -58,7 +58,7 @@ io.on("connection", (s) => {
     // let command1 = `sh ~/ces/scripts/${arg}`
     const command0 = `chmod +x ${process.env.CES_PATH}/scripts/${arg}`
     let command1 = `sh ${process.env.CES_PATH}/scripts/${arg}`
-    if (downloadResult != false) {
+    if (downloadResult == false) {
       command1 = `sh ${process.env.CES_PATH}/scripts/backup/${arg}`
     }
 
