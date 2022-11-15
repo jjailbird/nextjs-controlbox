@@ -53,7 +53,7 @@ Toast(popup) 메시지 문구 수정하기
         Service has been upgraded.
       </ModalBasic>
       <ModalBasic open={modaSDNEnabled} onClose={closeModalSDNEnabled}>
-        Service has been upgraded.
+        SDN has been enabled.
       </ModalBasic>
       <ModalReset open={modalReset} onClose={closeModalReset} onClick1={executeReset} onClick2={closeModalReset}>
         Do you really want to reset it?
