@@ -22,7 +22,7 @@ export default function Home() {
   const [enableUpgrade, setEnableUpgrade] = useState(false)
   const [enableSDN, setEnableSDN] = useState(false)
   const [enableReset, setEnableReset] = useState(false)
- 
+
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [downloadValue, setDownloadValue] = useState(0);
   const [download, setDownload] = useState(false)
@@ -34,7 +34,7 @@ export default function Home() {
   const [modalUpgraded, setModalUpgraded] = useState(false)
   const [modaSDNEnabled, setModalSDNEnabled] = useState(false)
   const [modalReset, setModalReset] = useState(false)
- 
+
   function startDownload() {
     setDownload(!download)
   }
@@ -89,15 +89,15 @@ export default function Home() {
 
   function openModalSDNEnabled() {
     setEnableSDN(false)
-    
-    setTimeout(()=>{
+
+    setTimeout(() => {
       setModalSDNEnabled(true)
     }, 1000)
 
     setTimeout(() => {
       closeModalSDNEnabled()
-    }, 
-    2500)
+    },
+      2500)
   }
 
   function closeModalSDNEnabled() {
@@ -148,7 +148,7 @@ export default function Home() {
       }, 10)
     } else if (command == 'ces_service2.sh') {
       if (!enableUpgrade) {
-        return 
+        return
       }
       setDownload2(true)
       let count = 0
@@ -171,7 +171,7 @@ export default function Home() {
       }, 10)
     } else if (command == 'ces_enable_sdn.sh') {
       if (!enableSDN) {
-        return 
+        return
       }
       openModalSDNEnabled()
     }
@@ -181,7 +181,7 @@ export default function Home() {
 
   function hidden_close() {
     if (window.confirm('Do you really wat to close?')) {
-      window.open('','_parent','')
+      window.open('', '_parent', '')
       window.close()
     }
   }
@@ -200,7 +200,7 @@ export default function Home() {
         Service has been upgraded.
       </ModalBasic>
       <ModalBasic open={modaSDNEnabled} onClose={closeModalSDNEnabled}>
-        Service has been upgraded.
+        SDN has been enabled.
       </ModalBasic>
       <ModalReset open={modalReset} onClose={closeModalReset} onClick1={executeReset} onClick2={closeModalReset}>
         Do you really want to reset it?
