@@ -31,7 +31,7 @@ export default function ModalBasic({ open, onClose, children }) {
         {/* <div className={style.modal_basic}>
           <div>{children}</div>
         </div> */}
-        <Box sx={style} marginTop={-25}>
+        <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h1" align='center' fontFamily={'NotoSantos'} fontWeight={'bold'} fontSize={34}>
             {children}
           </Typography>
