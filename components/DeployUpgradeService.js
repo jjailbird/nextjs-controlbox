@@ -27,7 +27,7 @@ export default function DeployUpgradeService({ onClick, disabled = false, downlo
             <Image src="/images/icon-download.png" width={120} height={120} alt="download" />
           </div>
           <div className={`${style.text}`}>
-            Deploy Aggregation Service
+            Data Aggregation Service
             <br />
             (Body + Camera)
           </div>
